@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+ <script language="javascript" type="text/javascript">
+	
+	function isPosInteger(inputVal){
+        var oneChar;
+        inputStr = inputVal.toString();
+        for(var i=0; i < inputStr.length; i++)
+         {
+             oneChar = inputStr.charAt(i)	
+             if(oneChar < "0" || oneChar > "9'")
+                return false;  
+         } 
+
+        return true;
+    }
+
+    function validateEnrollment(enroll)
+    {
+//        if((enroll.length != 21) || ((enroll.substring(5,6) != "S") && (enroll.substring(5,6) != "F") )  || (parseFloat(enroll.substring(14,17))<1) || (parseFloat(enroll.substring(7,9))<1)  ||  (! isPosInteger(enroll.substring(14,17))) ||  (! isPosInteger(enroll.substring(7,9))) )
+//            return false;
+//        else
+            return true;
+
+    }
+	
+	function updateDetail()
+{
+
+var enroll = 'MUST/';
+//imran commented
+//if (enroll=='CIIT/DDP-/') 
+//{
+//    enroll ='MUST'
+//}
+var IndexValue = document.getElementById('ddl_Session').selectedIndex;
+var SelectedVal = document.getElementById('ddl_Session').options[IndexValue].value;
+
+enroll  += SelectedVal;
+enroll += "-";
+var IndexValue2 = document.getElementById('ddl_Program').selectedIndex;
+var SelectedVal2 = document.getElementById('ddl_Program').options[IndexValue2].value;//alert('hello');
+enroll  += SelectedVal2;
+enroll += "-";
+enroll  += document.getElementById('txt_RollNo').value;
+enroll += '/AJK';
+
+//alert(enroll);
+/*
+
+            lbl_message.Text += "<div class='notification error png_bg'>" +
+                               "<div>" +
+                               "Just click 'Sign In'. No password needed." +
+                        "</div>" +
+                    "</div>";
+
+
+
+
+*/
+if(validateEnrollment(enroll))
+{
+var Message = document.getElementById("ErrorMessage");
+Message.innerHTML = "<div class='notification png_bg'><div align='center' style='color:green'>"+enroll+"</div></div>";
+//alert(enroll);
+ //document.all.enrollment.innerHTML ="<font color='green'>"+enroll+"</font>";    
+ return true;
+}
+else
+{
+    var Message = document.getElementById("ErrorMessage");
+    Message.innerHTML = "<div class='notification error png_bg'><div align='center' style='color:red'>"+enroll+"</div></div>";
+    //document.all.enrollment.innerHTML ="<font color='red'>"+enroll+"</font>";   
+    return false;
+}
+
+}
+	
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>CMS :: Student Login</title>
+    <!--                       CSS                       -->
+    <!-- Reset Stylesheet -->
+    <link rel="stylesheet" href="BOT_Theme/resources/css/reset.css" type="text/css" media="screen" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="BOT_Theme/resources/css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="BOT_Theme/resources/css/blue.css" type="text/css" media="screen" />
+    <!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+    <link rel="stylesheet" href="BOT_Theme/resources/css/invalid.css" type="text/css"
+        media="screen" />
+    <!-- Colour Schemes
+	  
+		Default colour scheme is green. Uncomment prefered stylesheet to use it.
+		
+		
+		
+		<link rel="stylesheet" href="resources/css/red.css" type="text/css" media="screen" />  
+	 
+		-->
+    <!-- Internet Explorer Fixes Stylesheet -->
+    <!--[if lte IE 7]>
+			<link rel="stylesheet" href="resources/css/ie.css" type="text/css" media="screen" />
+		<![endif]-->
+    <!--                       Javascripts                       -->
+    <!-- jQuery -->
+
+    <script type="text/javascript" src="resources/scripts/jquery-1.3.2.min.js"></script>
+
+    <!-- jQuery Configuration -->
+
+    <script type="text/javascript" src="resources/scripts/simpla.jquery.configuration.js"></script>
+
+    <!-- Facebox jQuery Plugin -->
+
+    <script type="text/javascript" src="resources/scripts/facebox.js"></script>
+
+    <!-- jQuery WYSIWYG Plugin -->
+
+    <script type="text/javascript" src="resources/scripts/jquery.wysiwyg.js"></script>
+ <!-- POP UP Starts here -->
+<link rel="stylesheet" href="colorbox.css" />
+
+    
+ <!-- POP UP Ends here -->
+    
+    <!-- Internet Explorer .png-fix -->
+    <!--[if IE 6]>
+			<script type="text/javascript" src="resources/scripts/DD_belatedPNG_0.0.7a.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('.png_bg, img, li');
+			</script>
+		<![endif]-->
+		
+<style>
+    .VkasPanelStyle
+    {
+        background-color: White;
+    border: 10px solid #9CC3F7;
+    border-radius: 10px 10px 10px 10px;
+    font-family: Verdana;
+    font-size: 10pt;
+    margin: 0 auto;
+    position:relative;
+    padding: 10px;
+    width: 370px;
+    z-index: 999;
+    }
+    </style>
+</head>
+<body id="login">
+    <form name="form2" method="post" action="login.aspx" id="form2">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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UEgDRFBUA0RWTQNFMDEDRTA2A0UxMQNFMTQDRTE1A0UyNANFNDMDRURFA0VEVQNFTFQDRU5HA0VQRQNFVFQDRjAxA0cxMANHMTUDRzE2A0cxNwNHMTkDRzIwA0cyMQNHMjIDRzIzA0cyNANHMjUDRzI2A0cyNwNHMjgDRzMwA0czMgNHMzMDRzM1A0czNgNHMzcDRzM4A0czOQNHNDADRzQxA0c0MgNHNDMDRzQ0A0c0NwNIMDEDSDAzA0gxNANIUk0DSTA2A0kxMQNJRVQDSVJCA0owNQNKMTEDSjE1A0oxNgNKMTkDSjIyA0oyNANKMjgDSjI5A0ozMANKMzEDSjMyA0ozNQNKMzgDSjQzA0o0NwNLMDEDTDEyA0wxMwNMQVcDTExCA00wMQNNMDMDTTA1A00xNANNQUUDTUFJA01CQQNNQkUDTUJZA01DRQNNQ0gDTUNNA01DUwNNQ1QDTUNWA01FQQNNRUMDTUVEA01FRQNNRVMDTUVUA01MVANNTUUDTU1TA01QRQNNUEgDTVNNA01URQNNWk8DTjAxA04wMwNPMDUDTzA2A08xMANPMTEDTzE0A08xNQNPMjIDTzI0A08zNQNPVFQDUDAxA1BCVANQQlkDUENIA1BDUwNQQ1YDUEVFA1BNRQNQUEgDUFNNA1BaTwNRMDEDUTA1A1ExOANSMDEDUkJBA1JCVANSQlkDUkNFA1JDSANSQ1MDUkNWA1JFQwNSRUQDUkVOA1JJUwNSTUUDUlBIA1JTRQNSU00DUlpPA1MwMQNTMDMDVDAxA1QwNANVMDkDVTEwA1UxNgNWMTEDVjEyA1YxMwNXNDUDVzQ2A1gwMgNYMDYDWDEyA1kwMgNZMDYDWTA5A1kxMANZMTYDWTI0A1k0OANaMDIDWjA2A1owOQNaMTYDWjI0A1ozNANaNDgUKwPrAWdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dkZAILDw9kFgIeB29uS2V5VXAFDnVwZGF0ZURldGFpbCgpZGTpzAOrVlY9u/mmogXsFJxl6R7dkw==" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C2EE9ABB" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="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" />
+    <div id="login-wrapper" class="png_bg">
+        <div id="login-top">
+            <h1>
+                Student Login</h1>
+            <!-- Logo (221px width) -->
+            <img id="imageLogo" alt="MUST IIT Student Azad Kashmir" src="resources/images/logo.png" height="90" width="400" border="0" />
+        </div>
+        <!-- End #logn-top -->
+        <div id="login-content">
+            <div id="ErrorMessage">
+                <br />
+            </div>
+            
+            <p>
+                
+            </p>
+            <p style="vertical-align: bottom; width: 100%;">
+                <label>
+                    RollNo</label>
+                <select name="ddl_Session" id="ddl_Session" class="small-input" onChange="updateDetail()">
+	<option value="FA15">FA15</option>
+	<option value="FA16">FA16</option>
+	<option value="FA17">FA17</option>
+	<option value="FA18">FA18</option>
+	<option value="FA19">FA19</option>
+	<option value="FA20">FA20</option>
+	<option value="FA21">FA21</option>
+	<option value="FA22">FA22</option>
+	<option value="FA23">FA23</option>
+	<option value="FA24">FA24</option>
+	<option value="IN22">IN22</option>
+	<option value="IN23">IN23</option>
+	<option value="IN24">IN24</option>
+	<option value="SE18">SE18</option>
+	<option value="SE19">SE19</option>
+	<option value="SE20">SE20</option>
+	<option value="SE21">SE21</option>
+	<option value="SE22">SE22</option>
+	<option value="SE23">SE23</option>
+	<option value="SE24">SE24</option>
+	<option value="SP16">SP16</option>
+	<option value="SP17">SP17</option>
+	<option value="SP18">SP18</option>
+	<option value="SP19">SP19</option>
+	<option value="SP20">SP20</option>
+	<option value="SP21">SP21</option>
+	<option value="SP22">SP22</option>
+	<option value="SP23">SP23</option>
+	<option value="SP24">SP24</option>
+	<option value="SP25">SP25</option>
+	<option value="SU16">SU16</option>
+	<option value="SU17">SU17</option>
+	<option value="SU18">SU18</option>
+	<option value="SU19">SU19</option>
+	<option value="SU20">SU20</option>
+	<option value="SU21">SU21</option>
+	<option value="SU22">SU22</option>
+	<option value="SU24">SU24</option>
+	<option value="SU25">SU25</option>
+
+</select>
+                -
+                <select name="ddl_Program" id="ddl_Program" class="small-input" onChange="updateDetail()">
+	<option value="A09">A09</option>
+	<option value="A10">A10</option>
+	<option value="A16">A16</option>
+	<option value="ADE">ADE</option>
+	<option value="B">B</option>
+	<option value="B.A">B.A</option>
+	<option value="B01">B01</option>
+	<option value="B04">B04</option>
+	<option value="B05">B05</option>
+	<option value="B06">B06</option>
+	<option value="B11">B11</option>
+	<option value="B14">B14</option>
+	<option value="B2D">B2D</option>
+	<option value="BAF">BAF</option>
+	<option value="BAH">BAH</option>
+	<option value="BAI">BAI</option>
+	<option value="BAS">BAS</option>
+	<option value="BAT">BAT</option>
+	<option value="BBA">BBA</option>
+	<option value="BBT">BBT</option>
+	<option value="BCH">BCH</option>
+	<option value="BCM">BCM</option>
+	<option value="BCS">BCS</option>
+	<option value="BCT">BCT</option>
+	<option value="BCV">BCV</option>
+	<option value="BEC">BEC</option>
+	<option value="BED">BED</option>
+	<option value="BEE">BEE</option>
+	<option value="BFA">BFA</option>
+	<option value="BFD">BFD</option>
+	<option value="BFT">BFT</option>
+	<option value="BHE">BHE</option>
+	<option value="BHM">BHM</option>
+	<option value="BHN">BHN</option>
+	<option value="BHS">BHS</option>
+	<option value="BIR">BIR</option>
+	<option value="BIS">BIS</option>
+	<option value="BIT">BIT</option>
+	<option value="BMB">BMB</option>
+	<option value="BMC">BMC</option>
+	<option value="BME">BME</option>
+	<option value="BMT">BMT</option>
+	<option value="BPH">BPH</option>
+	<option value="BPS">BPS</option>
+	<option value="BSE">BSE</option>
+	<option value="BSM">BSM</option>
+	<option value="BST">BST</option>
+	<option value="BSY">BSY</option>
+	<option value="BTH">BTH</option>
+	<option value="BTY">BTY</option>
+	<option value="BZO">BZO</option>
+	<option value="C04">C04</option>
+	<option value="C05">C05</option>
+	<option value="C06">C06</option>
+	<option value="C08">C08</option>
+	<option value="C11">C11</option>
+	<option value="CSE">CSE</option>
+	<option value="D02">D02</option>
+	<option value="DLA">DLA</option>
+	<option value="DOP">DOP</option>
+	<option value="DPH">DPH</option>
+	<option value="DPT">DPT</option>
+	<option value="DVM">DVM</option>
+	<option value="E01">E01</option>
+	<option value="E06">E06</option>
+	<option value="E11">E11</option>
+	<option value="E14">E14</option>
+	<option value="E15">E15</option>
+	<option value="E24">E24</option>
+	<option value="E43">E43</option>
+	<option value="EDE">EDE</option>
+	<option value="EDU">EDU</option>
+	<option value="ELT">ELT</option>
+	<option value="ENG">ENG</option>
+	<option value="EPE">EPE</option>
+	<option value="ETT">ETT</option>
+	<option value="F01">F01</option>
+	<option value="G10">G10</option>
+	<option value="G15">G15</option>
+	<option value="G16">G16</option>
+	<option value="G17">G17</option>
+	<option value="G19">G19</option>
+	<option value="G20">G20</option>
+	<option value="G21">G21</option>
+	<option value="G22">G22</option>
+	<option value="G23">G23</option>
+	<option value="G24">G24</option>
+	<option value="G25">G25</option>
+	<option value="G26">G26</option>
+	<option value="G27">G27</option>
+	<option value="G28">G28</option>
+	<option value="G30">G30</option>
+	<option value="G32">G32</option>
+	<option value="G33">G33</option>
+	<option value="G35">G35</option>
+	<option value="G36">G36</option>
+	<option value="G37">G37</option>
+	<option value="G38">G38</option>
+	<option value="G39">G39</option>
+	<option value="G40">G40</option>
+	<option value="G41">G41</option>
+	<option value="G42">G42</option>
+	<option value="G43">G43</option>
+	<option value="G44">G44</option>
+	<option value="G47">G47</option>
+	<option value="H01">H01</option>
+	<option value="H03">H03</option>
+	<option value="H14">H14</option>
+	<option value="HRM">HRM</option>
+	<option value="I06">I06</option>
+	<option value="I11">I11</option>
+	<option value="IET">IET</option>
+	<option value="IRB">IRB</option>
+	<option value="J05">J05</option>
+	<option value="J11">J11</option>
+	<option value="J15">J15</option>
+	<option value="J16">J16</option>
+	<option value="J19">J19</option>
+	<option value="J22">J22</option>
+	<option value="J24">J24</option>
+	<option value="J28">J28</option>
+	<option value="J29">J29</option>
+	<option value="J30">J30</option>
+	<option value="J31">J31</option>
+	<option value="J32">J32</option>
+	<option value="J35">J35</option>
+	<option value="J38">J38</option>
+	<option value="J43">J43</option>
+	<option value="J47">J47</option>
+	<option value="K01">K01</option>
+	<option value="L12">L12</option>
+	<option value="L13">L13</option>
+	<option value="LAW">LAW</option>
+	<option value="LLB">LLB</option>
+	<option value="M01">M01</option>
+	<option value="M03">M03</option>
+	<option value="M05">M05</option>
+	<option value="M14">M14</option>
+	<option value="MAE">MAE</option>
+	<option value="MAI">MAI</option>
+	<option value="MBA">MBA</option>
+	<option value="MBE">MBE</option>
+	<option value="MBY">MBY</option>
+	<option value="MCE">MCE</option>
+	<option value="MCH">MCH</option>
+	<option value="MCM">MCM</option>
+	<option value="MCS">MCS</option>
+	<option value="MCT">MCT</option>
+	<option value="MCV">MCV</option>
+	<option value="MEA">MEA</option>
+	<option value="MEC">MEC</option>
+	<option value="MED">MED</option>
+	<option value="MEE">MEE</option>
+	<option value="MES">MES</option>
+	<option value="MET">MET</option>
+	<option value="MLT">MLT</option>
+	<option value="MME">MME</option>
+	<option value="MMS">MMS</option>
+	<option value="MPE">MPE</option>
+	<option value="MPH">MPH</option>
+	<option value="MSM">MSM</option>
+	<option value="MTE">MTE</option>
+	<option value="MZO">MZO</option>
+	<option value="N01">N01</option>
+	<option value="N03">N03</option>
+	<option value="O05">O05</option>
+	<option value="O06">O06</option>
+	<option value="O10">O10</option>
+	<option value="O11">O11</option>
+	<option value="O14">O14</option>
+	<option value="O15">O15</option>
+	<option value="O22">O22</option>
+	<option value="O24">O24</option>
+	<option value="O35">O35</option>
+	<option value="OTT">OTT</option>
+	<option value="P01">P01</option>
+	<option value="PBT">PBT</option>
+	<option value="PBY">PBY</option>
+	<option value="PCH">PCH</option>
+	<option value="PCS">PCS</option>
+	<option value="PCV">PCV</option>
+	<option value="PEE">PEE</option>
+	<option value="PME">PME</option>
+	<option value="PPH">PPH</option>
+	<option value="PSM">PSM</option>
+	<option value="PZO">PZO</option>
+	<option value="Q01">Q01</option>
+	<option value="Q05">Q05</option>
+	<option value="Q18">Q18</option>
+	<option value="R01">R01</option>
+	<option value="RBA">RBA</option>
+	<option value="RBT">RBT</option>
+	<option value="RBY">RBY</option>
+	<option value="RCE">RCE</option>
+	<option value="RCH">RCH</option>
+	<option value="RCS">RCS</option>
+	<option value="RCV">RCV</option>
+	<option value="REC">REC</option>
+	<option value="RED">RED</option>
+	<option value="REN">REN</option>
+	<option value="RIS">RIS</option>
+	<option value="RME">RME</option>
+	<option value="RPH">RPH</option>
+	<option value="RSE">RSE</option>
+	<option value="RSM">RSM</option>
+	<option value="RZO">RZO</option>
+	<option value="S01">S01</option>
+	<option value="S03">S03</option>
+	<option value="T01">T01</option>
+	<option value="T04">T04</option>
+	<option value="U09">U09</option>
+	<option value="U10">U10</option>
+	<option value="U16">U16</option>
+	<option value="V11">V11</option>
+	<option value="V12">V12</option>
+	<option value="V13">V13</option>
+	<option value="W45">W45</option>
+	<option value="W46">W46</option>
+	<option value="X02">X02</option>
+	<option value="X06">X06</option>
+	<option value="X12">X12</option>
+	<option value="Y02">Y02</option>
+	<option value="Y06">Y06</option>
+	<option value="Y09">Y09</option>
+	<option value="Y10">Y10</option>
+	<option value="Y16">Y16</option>
+	<option value="Y24">Y24</option>
+	<option value="Y48">Y48</option>
+	<option value="Z02">Z02</option>
+	<option value="Z06">Z06</option>
+	<option value="Z09">Z09</option>
+	<option value="Z16">Z16</option>
+	<option value="Z24">Z24</option>
+	<option value="Z34">Z34</option>
+	<option value="Z48">Z48</option>
+
+</select>
+                -<input name="txt_RollNo" type="text" maxlength="3" id="txt_RollNo" class="small-input text-input" onKeyUp="updateDetail()" />
+            </p>
+            <div class="clear">
+            </div>
+            <p>
+                <label>
+                    Password</label>
+                <input name="txt_Password" type="password" id="txt_Password" class="text-input" style="width: 315px;" />
+            </p>
+            <div class="clear">
+            </div>
+            
+            <div class="clear">
+            </div>
+            <p>
+                <input type="submit" name="btn_StudentSignIn" value="Sign In" onclick="return updateDetail();" id="btn_StudentSignIn" class="button" />
+           
+            </p>
+            <p>
+                &nbsp;</p>
+        </div>
+        <!-- End #login-content -->
+        
+        <!-- POP UP Div Starts here -->
+        
+            
+            <!-- POP UP Div End here -->
+    <!-- End #login-wrapper -->
+    
+    </form>
+</body>
+</html>
