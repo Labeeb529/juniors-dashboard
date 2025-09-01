@@ -1,17 +1,5 @@
 <x-layout>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: white;
-            line-height: 1.6;
-            color: #2d3748;
-        }
 
         .guides-section {
             max-width: 1200px;

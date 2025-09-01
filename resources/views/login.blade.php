@@ -1,9 +1,8 @@
 <x-layout>
     <style>
-
         .wrapper {
             display: flex;
-            align-items:center;
+            align-items: center;
             justify-content: center;
             height: 80vh;
             width: 100%;
@@ -22,6 +21,11 @@
             position: relative;
             overflow: hidden;
             animation: slideUp 0.6s ease-out;
+
+            p {
+                text-align: center;
+                margin: 1rem;
+            }
         }
 
         .login-container::before {
@@ -52,7 +56,7 @@
             color: #2d3748;
             font-size: 28px;
             font-weight: 600;
-            margin-bottom: 32px;
+            margin-bottom: 3rem;
             position: relative;
         }
 
@@ -152,6 +156,7 @@
             left: 100%;
         }
 
+
         button:active {
             transform: translateY(0);
             box-shadow: 0 5px 15px rgba(0, 132, 255, 0.2);
@@ -164,9 +169,9 @@
             pointer-events: none;
             overflow: hidden;
         }
-        
+
         .shape {
-            border:10px solid blue;
+            border: 10px solid blue;
             position: absolute;
             opacity: 0.1;
             animation: float 6s ease-in-out infinite;
@@ -248,18 +253,19 @@
 
     <div class="wrapper">
 
-        <form class="login-container" method="POST" action="/attendance">
+        <form class="login-container" method="POST" action="/login">
             @csrf
-            <h2>Attendance Login</h2>
-            <div class="roll-inputs">
-                <input type="text" name="roll_session" placeholder="FA24" required maxlength="5">
-                <p>-</p>
-                <input type="text" name="roll_program" placeholder="CSE" required maxlength="3">
-                <p>-</p>
-                <input type="text" name="roll_number" placeholder="020" required maxlength="3">
-            </div>
+            <h2>Portal Login</h2>
+            <input type="text" name="email" placeholder="Email" required value="{{old('email')}}">
+            @error('email')
+                <p>{{$message}}</p>
+            @enderror
             <input type="password" name="password" placeholder="Password" required>
+            @error('password')
+                <p>{{$message}}</p>
+            @enderror
             <button type="submit">Login</button>
+            <p>Don't have an account? <a href="{{route('signup')}}">Signup</a></p>
         </form>
     </div>
 </x-layout>

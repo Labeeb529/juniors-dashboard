@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-    .header-right{
+    .header-right {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 2rem;
     }
-    header img{
+
+    header img {
         height: 100px;
         /* position: absolute; */
         top: 20px;
         right: 20px
     }
 </style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +28,7 @@
 
 <body>
     <header>
-        <img src="/logo.png" alt="">
+        {{-- <img src="/logo.png" alt=""> --}}
         <div class="text">
             <a href="/" style="text-decoration: none">
                 <h1>Junior's Portal</h1>
@@ -42,15 +44,30 @@
                     <button>Signout</button>
                 </form>
             @endauth
-             <a href="/about">About</a>
-            <a href="#">Register</a>
-            <a href="#">Login</a>
+            <a href="/about">About</a>
+            <a href="/signup">Signup</a>
+            <a href="/login">Login</a>
         </div>
     </header>
+    @if(session()->has('success'))
+        <div class="container container--narrow">
+            <div class="alert alert-success text-center">
+                {{session('success')}}
+            </div>
+        </div>
+    @endif
+
+    @if(session()->has('failure'))
+        <div class="container container--narrow">
+            <div class="alert alert-danger text-center">
+                {{session('failure')}}
+            </div>
+        </div>
+    @endif
     <style>
         header {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            display: flex;
+            /* grid-template-columns: 1fr 1fr 1fr; */
             align-items: center;
             justify-content: space-between;
             width: 100%;
@@ -68,16 +85,18 @@
             p {
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             }
-            a{
+
+            a {
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
                 text-transform: uppercase;
                 color: rgb(170, 170, 255);
-                transition: all 0.3s ease;  
+                transition: all 0.3s ease;
                 text-decoration: underline;
                 text-decoration-color: rgba(255, 255, 255, 0);
                 text-underline-offset: 0px;
             }
-            a:hover{
+
+            a:hover {
                 transform: translateY(-5px);
                 text-underline-offset: 5px;
                 text-decoration-color: rgba(255, 255, 255, 1);
@@ -85,13 +104,13 @@
             }
         }
 
-        .text{
+        .text {
             align-self: center;
             justify-self: center;
             text-align: center
         }
 
-        .header-right{
+        .header-right {
             align-self: center;
             justify-self: end;
         }

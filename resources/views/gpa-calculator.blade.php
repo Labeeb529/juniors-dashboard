@@ -9,14 +9,16 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
-            line-height: 1.6;
         }
-
+        
         section {
             max-width: 1400px;
             margin: 0 auto;
             animation: fadeIn 0.6s ease-out;
             padding: 2rem;
+            >*{
+                line-height: 1.6;
+            }
         }
 
         @keyframes fadeIn {

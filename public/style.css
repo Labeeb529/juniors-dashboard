@@ -17,6 +17,28 @@ header {
     p {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
+    .nav{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        a{
+            text-transform: uppercase;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: rgba(0, 0, 0, 0.4);
+            text-decoration: underline;
+            text-decoration-color: rgba(0, 0, 0, 0) ;
+            text-underline-offset: 1px;
+            transition: all 0.3s ease;
+        }
+        a:hover{
+            color: rgba(0, 0, 0, 0.7);
+            transform: translateY(-5px);
+            text-decoration-color: rgba(0, 0, 0, 0.7);
+            text-underline-offset: 5px;
+            text-decoration-thickness: 2px;
+        }
+    }
 }
 
 /* STYLING FOR SINGLE GUIDE PAGE*/

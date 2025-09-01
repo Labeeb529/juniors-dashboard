@@ -1,28 +1,20 @@
 <x-layout>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: white;
-            line-height: 1.6;
-            color: #2d3748;
-        }
-
         section {
             max-width: 1400px;
             margin: 0 auto;
             padding: 40px 20px;
+
+            >* {
+                line-height: 1.6;
+            }
         }
 
         .notes-container {
             display: grid;
             gap: 32px;
             animation: fadeIn 0.6s ease-out;
+
         }
 
         @keyframes fadeIn {

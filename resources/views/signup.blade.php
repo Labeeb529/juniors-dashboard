@@ -1,16 +1,19 @@
 <x-layout>
     <style>
-
         .wrapper {
+            padding-top: 4rem;
             display: flex;
-            align-items:center;
+            align-items: center;
             justify-content: center;
-            height: 80vh;
+            min-height: 80vh;
             width: 100%;
             font-family: Arial, Helvetica, sans-serif
         }
 
         .login-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 24px;
@@ -22,6 +25,11 @@
             position: relative;
             overflow: hidden;
             animation: slideUp 0.6s ease-out;
+
+            p {
+                text-align: center;
+                margin: 0.25rem;
+            }
         }
 
         .login-container::before {
@@ -52,7 +60,7 @@
             color: #2d3748;
             font-size: 28px;
             font-weight: 600;
-            margin-bottom: 32px;
+            margin-bottom: 3rem;
             position: relative;
         }
 
@@ -72,7 +80,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 24px;
+            /* margin-bottom: 24px; */
         }
 
         .roll-inputs input {
@@ -112,10 +120,6 @@
             font-weight: 400;
         }
 
-        input[name="password"] {
-            margin-bottom: 32px;
-            margin-top: 8px;
-        }
 
         button {
             width: 100%;
@@ -152,6 +156,7 @@
             left: 100%;
         }
 
+
         button:active {
             transform: translateY(0);
             box-shadow: 0 5px 15px rgba(0, 132, 255, 0.2);
@@ -164,9 +169,9 @@
             pointer-events: none;
             overflow: hidden;
         }
-        
+
         .shape {
-            border:10px solid blue;
+            border: 10px solid blue;
             position: absolute;
             opacity: 0.1;
             animation: float 6s ease-in-out infinite;
@@ -248,18 +253,44 @@
 
     <div class="wrapper">
 
-        <form class="login-container" method="POST" action="/attendance">
+        <form class="login-container" method="POST" action="/signup">
             @csrf
-            <h2>Attendance Login</h2>
+            <h2>Create an Account</h2>
+            <input type="text" name="username" placeholder="Username" required value="{{old('username')}}">
+            @error('username')
+                <p>{{$message}}</p>
+            @enderror
             <div class="roll-inputs">
-                <input type="text" name="roll_session" placeholder="FA24" required maxlength="5">
+                <input type="text" name="session" placeholder="FAXX" required maxlength="4" value="{{old('session')}}">
                 <p>-</p>
-                <input type="text" name="roll_program" placeholder="CSE" required maxlength="3">
+                <input type="text" name="program" placeholder="CSE" required maxlength="3" value="{{old('program')}}">
                 <p>-</p>
-                <input type="text" name="roll_number" placeholder="020" required maxlength="3">
+                <input type="text" name="roll_no" placeholder="000" required maxlength="3" value="{{old('roll_no')}}">
             </div>
+            @error('session')
+                <p>{{$message}}</p>
+            @enderror
+            @error('program')
+                <p>{{$message}}</p>
+            @enderror
+            @error('roll_no')
+                <p>{{$message}}</p>
+            @enderror
+
+            <input type="text" name="email" placeholder="Email" required  value="{{old('email')}}">
+            @error('email')
+                <p>{{$message}}</p>
+            @enderror
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            @error('password')
+                <p>{{$message}}</p>
+            @enderror
+            <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+            @error('password_confirmation')
+                <p>{{$message}}</p>
+            @enderror
+            <button type="submit">Signup</button>
+            <p>Already have an account? <a href="{{route('login')}}">Login</a></p>
         </form>
     </div>
 </x-layout>

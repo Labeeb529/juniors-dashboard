@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\GuidesController;
 use App\Http\Controllers\AttendanceController;
+use PHPUnit\Framework\Attributes\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,7 @@ use App\Http\Controllers\AttendanceController;
 */
 
 Route::view('/', 'home');
+Route::view('/home', 'home');
 
 Route::view('/about', 'about');
 
@@ -35,6 +38,17 @@ Route::get('/cms', function () {
     return redirect()->away('https://cms.must.edu.pk:8082');
 });
 
+Route::middleware(['guest'])->group(function () {
+
+    Route::view('/login', 'login')->name('login');
+    Route::post('/login', [UserController::class, 'login']);
+    Route::view('/signup', 'signup')->name('signup');
+    Route::post('/signup', [UserController::class, 'create']);
+
+});
+
+
+
 //Admins Panel
 
 Route::get('/admin-login', [AdminController::class, 'showLoginPage']);
@@ -46,4 +60,4 @@ Route::get('/admin', [AdminController::class, 'loadAdmin'])
 
 Route::post('/signout', [AdminController::class, 'signout']);
 
-Route::post('/create-guide', [GuidesController::Class, 'createGuide']);
+Route::post('/create-guide', [GuidesController::class, 'createGuide']);
