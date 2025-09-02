@@ -28,16 +28,13 @@
 
 <body>
     <header>
-        {{-- <img src="/logo.png" alt=""> --}}
         <div class="text">
             <a href="/" style="text-decoration: none">
                 <h1>Junior's Portal</h1>
             </a>
             <p>Computer Systems Engineering</p>
         </div>
-
-
-        <div class="header-right">
+        <nav class="header-right" id="navMenu">
             @auth
                 <form action="/signout" method="post">
                     @csrf
@@ -47,7 +44,12 @@
             <a href="/about">About</a>
             <a href="/signup">Signup</a>
             <a href="/login">Login</a>
-        </div>
+        </nav>
+        <button class="burger" id="burgerBtn" aria-label="Open navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
     @if(session()->has('success'))
         <div class="container container--narrow">
@@ -65,43 +67,67 @@
         </div>
     @endif
     <style>
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .burger span {
+            display: block;
+            width: 25px;
+            height: 4px;
+            margin: 2px 0;
+            background: #2d3748;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .burger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .burger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
         header {
             display: flex;
-            /* grid-template-columns: 1fr 1fr 1fr; */
             align-items: center;
             justify-content: space-between;
             width: 100%;
             padding: 1.5rem 2.5rem;
-            /* background: rgba(255, 255, 255, 0.9); */
-            /* box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.15); */
-
-            h1 {
-                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-                color: transparent;
-                background: linear-gradient(45deg, rgb(255, 255, 255), rgb(255, 255, 255));
-                background-clip: text;
-            }
-
-            p {
-                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            }
-
-            a {
-                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-                text-transform: uppercase;
-                color: rgb(170, 170, 255);
-                transition: all 0.3s ease;
-                text-decoration: underline;
-                text-decoration-color: rgba(255, 255, 255, 0);
-                text-underline-offset: 0px;
-            }
-
-            a:hover {
-                transform: translateY(-5px);
-                text-underline-offset: 5px;
-                text-decoration-color: rgba(255, 255, 255, 1);
-                color: white
-            }
+            position: relative;
+        }
+        header h1 {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: transparent;
+            background: linear-gradient(45deg, rgb(255, 255, 255), rgb(255, 255, 255));
+            background-clip: text;
+        }
+        header p {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        header a {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            text-transform: uppercase;
+            color: rgb(170, 170, 255);
+            transition: all 0.3s ease;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 255, 255, 0);
+            text-underline-offset: 0px;
+        }
+        header a:hover {
+            transform: translateY(-5px);
+            text-underline-offset: 5px;
+            text-decoration-color: rgba(255, 255, 255, 1);
+            color: white
         }
 
         .text {
@@ -113,6 +139,8 @@
         .header-right {
             align-self: center;
             justify-self: end;
+            display: flex;
+            gap: 2rem;
         }
 
         * {
@@ -227,6 +255,7 @@
             text-align: center;
             margin-bottom: 50px;
             animation: slideDown 0.8s ease-out;
+            padding: 0.75rem;
         }
 
         .header h1 {
@@ -267,6 +296,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
             animation: fadeInUp 0.8s ease-out 0.3s both;
+            padding: calc(1rem + 0.5vw);
         }
 
         @keyframes fadeInUp {
@@ -454,63 +484,55 @@
         } */
 
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            body {
-                padding: 16px;
+        @media (max-width: 900px) {
+            .header-right {
+                position: fixed;
+                top: 0;
+                right: -100vw;
+                flex-direction: column;
+                background: rgba(0,0,0,0.97);
+                width: 70vw;
+                height: 100vh;
+                padding-top: 80px;
+                gap: 2rem;
+                box-shadow: -2px 0 16px rgba(0,0,0,0.2);
+                transition: right 0.3s;
+                z-index: 99;
+                align-items: flex-start;
             }
-
-            .header h1 {
-                font-size: 2.5rem;
-                margin-bottom: 12px;
+            .header-right.open {
+                right: 0;
             }
-
-            .header p {
-                font-size: 1rem;
-                padding: 0 20px;
+            .header-right a, .header-right form button {
+                color: #fff !important;
+                font-size: 1.2rem;
+                text-decoration: none;
+                background: none;
+                border: none;
+                margin: 0 2rem;
+                padding: 0.5rem 0;
+                width: 100%;
+                text-align: left;
             }
-
-            .header {
-                margin-bottom: 40px;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-
-            .card {
-                padding: 28px 24px;
-            }
-
-            .card-icon {
-                width: 70px;
-                height: 70px;
-                margin-bottom: 16px;
-            }
-
-            .card-icon i {
-                font-size: 2rem;
-            }
-
-            .card h3 {
-                font-size: 1.3rem;
-            }
-
-            .shape {
-                display: none;
-                /* Hide floating shapes on mobile for better performance */
+            .burger {
+                display: flex;
+                position: absolute;
+                right: 2rem;
+                top: 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
+            header{
+                padding: 1rem 1.5rem;
+                margin-bottom: 2rem;
+            }
             .header h1 {
                 font-size: 2rem;
             }
 
             .cards-grid {
-                max-width: 350px;
+                /* max-width: 350px; */
             }
 
             .card {
@@ -658,8 +680,7 @@
         // Add interactive features for better UX
         document.addEventListener('DOMContentLoaded', function () {
             const cards = document.querySelectorAll('.card');
-
-            // Add click ripple effect
+            // Ripple effect
             cards.forEach(card => {
                 card.addEventListener('click', function (e) {
                     const ripple = document.createElement('div');
@@ -667,7 +688,6 @@
                     const size = Math.max(rect.width, rect.height);
                     const x = e.clientX - rect.left - size / 2;
                     const y = e.clientY - rect.top - size / 2;
-
                     ripple.style.cssText = `
                         position: absolute;
                         width: ${size}px;
@@ -681,16 +701,13 @@
                         pointer-events: none;
                         z-index: 1;
                     `;
-
                     card.appendChild(ripple);
-
                     setTimeout(() => {
                         ripple.remove();
                     }, 600);
                 });
             });
-
-            // Add keyboard navigation
+            // Keyboard navigation
             cards.forEach((card, index) => {
                 card.setAttribute('tabindex', '0');
                 card.addEventListener('keydown', function (e) {
@@ -700,13 +717,11 @@
                     }
                 });
             });
-
             // Intersection Observer for scroll animations
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -714,12 +729,39 @@
                     }
                 });
             }, observerOptions);
-
             cards.forEach(card => {
                 observer.observe(card);
             });
-        });
 
+            // Burger menu functionality
+            const burgerBtn = document.getElementById('burgerBtn');
+            const navMenu = document.getElementById('navMenu');
+            burgerBtn.addEventListener('click', function () {
+                burgerBtn.classList.toggle('active');
+                navMenu.classList.toggle('open');
+                burgerBtn.setAttribute('aria-expanded', navMenu.classList.contains('open'));
+            });
+            // Close nav on link click (mobile)
+            navMenu.querySelectorAll('a, form button').forEach(el => {
+                el.addEventListener('click', function () {
+                    if (window.innerWidth < 900) {
+                        navMenu.classList.remove('open');
+                        burgerBtn.classList.remove('active');
+                        burgerBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+            // Close nav on outside click
+            document.addEventListener('click', function (e) {
+                if (window.innerWidth < 900 && navMenu.classList.contains('open')) {
+                    if (!navMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
+                        navMenu.classList.remove('open');
+                        burgerBtn.classList.remove('active');
+                        burgerBtn.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
         // Add CSS for ripple effect
         const style = document.createElement('style');
         style.textContent = `
